@@ -55,6 +55,9 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico' />
+
+    <link rel="stylesheet" href="/assets/bundles/datatables/datatables.min.css">
+    <link rel="stylesheet" href="/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
@@ -91,10 +94,16 @@
                                 Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="auth-login.html" class="dropdown-item has-icon text-danger"> <i
-                                    class="fas fa-sign-out-alt"></i>
-                                Logout
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                    this.closest('form').submit();"
+                                    class="dropdown-item has-icon text-danger">
+                                    <i class="fas fa-sign-out-alt"></i>Log Out
+                                </x-dropdown-link>
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -105,7 +114,9 @@
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
-                    {{ $slot }}
+                    <div class="section-body">
+                        {{ $slot }}
+                    </div>
                 </section>
                 <div class="settingSidebar">
                     <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
@@ -222,6 +233,12 @@
     <script src="/assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="/assets/js/custom.js"></script>
+
+    <script src="/assets/bundles/datatables/datatables.min.js"></script>
+    <script src="/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Page Specific JS File -->
+    <script src="/assets/js/page/datatables.js"></script>
 </body>
 
 
