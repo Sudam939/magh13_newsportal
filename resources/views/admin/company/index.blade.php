@@ -4,7 +4,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h4>Company</h4>
-                    <a href="{{route('admin.company.create')}}" class="btn btn-primary">Add</a>
+                    @if (!$company)
+                        <a href="{{ route('admin.company.create') }}" class="btn btn-primary">Add</a>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,29 +25,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        <img src="" alt="">
-                                    </td>
-                                    <td>
-                                        Company Name
-                                    </td>
-                                    <td>
-                                        Company Email
-                                    </td>
-                                    <td>
-                                        Company Phone
-                                    </td>
-                                    <td>
-                                        Company Address
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                    </td>
-                                </tr> --}}
+                                @if ($company)
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            <img width="120" src="{{ asset($company->logo) }}" alt="">
+                                        </td>
+                                        <td>
+                                            {{ $company->name }}
+                                        </td>
+                                        <td>
+                                            {{ $company->email }}
+                                        </td>
+                                        <td>
+                                            {{ $company->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $company->address }}
+                                        </td>
+                                        <td>
+                                            <form action="{{route('admin.company.destroy', $company->id)}}" method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <a href="{{route('admin.company.edit', $company->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

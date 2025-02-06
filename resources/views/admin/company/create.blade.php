@@ -13,7 +13,11 @@
                         <div class="row">
                             <div class="col-6 mb-2">
                                 <label for="name">Enter Company Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control">
+                                <input type="text" name="name" id="name" class="form-control"
+                                    value="{{ old('name') }}">
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-6 mb-2">
