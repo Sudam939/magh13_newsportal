@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("admin.category.create");   
+        return view("admin.category.create");
     }
 
     /**
@@ -55,7 +55,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view("admin.category.edit",compact("category"));
     }
 
     /**
@@ -63,7 +64,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // return $request->all();
+        $category = Category::find($id);
+        $category->nep_title = $request->nep_title;
+        $category->eng_title = $request->eng_title;
+        $category->slug = Str::slug($request->eng_title);
+        $category->meta_keywords = $request->meta_keywords;
+        $category->meta_description = $request->meta_description;
+        $category->status = $request->status;
+        $category->update();
+        return redirect()->back();
     }
 
     /**

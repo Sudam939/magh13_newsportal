@@ -3,48 +3,49 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4>Company Edit</h4>
-                    <a href="{{ route('admin.company.index') }}" class="btn btn-primary">go back</a>
+                    <h4>Category Create</h4>
+                    <a href="{{ route('admin.category.index') }}" class="btn btn-primary">go back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.company.update', $company->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.category.update', $category->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <label for="name">Enter Company Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{$company->name}}">
+                                <label for="nep_title">Enter Nepali Title <span class="text-danger">*</span></label>
+                                <input type="text" name="nep_title" id="nep_title" class="form-control"
+                                    value="{{ $category->nep_title }}">
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label for="email">Enter Company Email <span class="text-danger">*</span></label>
-                                <input type="email" name="email" id="email" class="form-control" value="{{$company->email}}">
+                                <label for="eng_title">Enter English Title <span class="text-danger">*</span></label>
+                                <input type="text" name="eng_title" id="eng_title" class="form-control"
+                                    value="{{ $category->eng_title }}">
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label for="phone">Enter Company Phone <span class="text-danger">*</span></label>
-                                <input type="text" name="phone" id="phone" class="form-control" value="{{$company->phone}}">
+                                <label for="meta_keywords">Enter Meta Keywords (seperated by commas)</label>
+                                <textarea name="meta_keywords" id="meta_keywords" class="form-control">
+                                    {{ $category->meta_keywords }}
+                                </textarea>
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label for="address">Enter Company Address <span class="text-danger">*</span></label>
-                                <input type="text" name="address" id="address" class="form-control" value="{{$company->address}}">
+                                <label for="meta_description">Enter Meta Description</label>
+                                <textarea name="meta_description" id="meta_description" class="form-control">
+                                    {{ $category->meta_description }}
+                                </textarea>
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label for="facebook">Enter Facebook Link</label>
-                                <input type="text" name="facebook" id="facebook" class="form-control" value="{{$company->facebook}}">
-                            </div>
-
-                            <div class="col-6 mb-2">
-                                <label for="youtube">Enter Youtube Link</label>
-                                <input type="text" name="youtube" id="youtube" class="form-control" value="{{$company->youtube}}">
-                            </div>
-
-                            <div class="col-6 mb-2">
-                                <label for="logo">Enter Company Logo <span class="text-danger">*</span></label>
-                                <input type="file" name="logo" id="logo" class="form-control">
-                                <img src="{{asset($company->logo)}}" width="200" alt="">
+                                <label for="status">Change Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="1" {{ $category->status == 1 ? 'selected' : '' }}>Active
+                                    </option>
+                                    <option value="0" {{ $category->status == 0 ? 'selected' : '' }}>In Active
+                                    </option>
+                                </select>
                             </div>
 
                             <div class="col-12 mt-2">

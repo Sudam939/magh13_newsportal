@@ -19,8 +19,9 @@
                     class="fas fa-tag"></i><span>Category</span></a>
         </li>
 
-        <li class="dropdown">
-            <a href="{{ route('dashboard') }}" class="nav-link"><i class="far fa-newspaper"></i><span>Article</span></a>
+        <li class="dropdown {{ Request::routeIs('admin.article.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.article.index') }}" class="nav-link"><i
+                    class="far fa-newspaper"></i><span>Article</span></a>
         </li>
 
         <li class="dropdown">
