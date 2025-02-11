@@ -76,7 +76,21 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $article = Article::find($id);
+        $article->title = $request->title;
+        $article->description = $request->description;
+        $article->meta_keywords = $request->meta_keywords;
+        $article->meta_description = $request->meta_description;
+        $file = $request->image;
+        if ($file) {
+            $newName = time() . "." . $file->getClientOriginalExtension();
+            $file->move('images', $newName);
+            $article->image = "images/$newName";
+        }
+        $article->update();
+        //1 | 1,2
+        $article->categories()->sync($request->categories);
+        return redirect()->back();
     }
 
     /**
