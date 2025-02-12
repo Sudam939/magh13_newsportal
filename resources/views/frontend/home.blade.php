@@ -5,7 +5,7 @@
             <div class="grid md:grid-cols-12 gap-8">
 
                 <div class="md:col-span-8">
-                    <div>
+                    <a href="{{route('article',$latest_article->id)}}">
                         <img class="w-full object-cover" src="https://jawaaf.com/storage/01JKQYFNXSDJ0VT5DRMZW8N1JG.avif"
                             alt="{{ $latest_article->title }}">
                         <h1 class="text-2xl font-bold py-2">
@@ -14,7 +14,7 @@
                         <div class="limited-text w-full discription">
                             {!! $latest_article->description !!}
                         </div>
-                    </div>
+                    </a>
                 </div>
 
 

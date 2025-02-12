@@ -1,6 +1,6 @@
 @props(['article'])
 
-<a href="">
+<a href="{{route('article', $article->id)}}">
     <div
         class="grid grid-cols-12 gap-3 items-center mt-5 shadow-md rounded-md overflow-hidden hover:shadow-xl duration-200">
         <div class="col-span-4">

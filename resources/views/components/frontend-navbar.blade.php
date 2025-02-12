@@ -23,7 +23,7 @@
 
                 @foreach ($categories as $category)
                     <li>
-                        <a href="">{{ $category->nep_title }}</a>
+                        <a href="{{ route('category', $category->slug) }}">{{ $category->nep_title }}</a>
                     </li>
                 @endforeach
             </ul>

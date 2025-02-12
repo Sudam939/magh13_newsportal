@@ -8,8 +8,17 @@ use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PageController::class, 'home'])->name('home');
 
+// Frontend Routes
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/category/{slug}', [PageController::class, 'category'])->name('category');
+Route::get('/article/{id}', [PageController::class, 'article'])->name('article');
+
+
+
+
+
+// Admin Routes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
