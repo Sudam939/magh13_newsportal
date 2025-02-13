@@ -26,17 +26,30 @@ class PageController extends BaseController
         // $category = Category::where('slug',$slug)->get();
         $category = Category::where('slug', $slug)->first();
         $articles = $category->articles()->paginate(10);
-        return view('frontend.category', compact('articles'));
+        return view('frontend.category', compact('articles', 'category'));
     }
 
     public function article($id)
     {
         $article = Article::findOrFail($id);
         $cookie_data = Cookie::get("article$id");
-        if(!$cookie_data){
+        if (!$cookie_data) {
             $article->increment('views');
             Cookie::queue("article$id", $article->id);
         }
         return view('frontend.article', compact('article'));
+    }
+
+
+    public function search(Request $request)
+    {
+        $q = $request->q;
+        $articles = Article::where('title', 'like', "%$q%")->orWhere('description', 'like', "%$q%")->where('status','approved')->paginate(8);
+        if (count($articles) == 0) {
+            return view('404page');
+        }
+
+
+        return view('frontend.search', compact('articles'));
     }
 }

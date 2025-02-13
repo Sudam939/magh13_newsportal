@@ -1,4 +1,4 @@
-<x-frontend-layout>
+<x-frontend-layout :meta_keywords="$article->meta_keywords" :meta_description="$article->meta_description">
     <section>
         <div class="container py-10">
             <div class="grid md:grid-cols-12 gap-6">
@@ -13,7 +13,7 @@
                         {{ $article->title }}
                     </h1>
 
-                    <img src="{{ asset($article->image) }}" alt="">
+                    <img src="{{ asset($article->image) }}" alt="{{ $article->title }}">
 
                     <div>
                         {!! $article->description !!}

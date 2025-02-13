@@ -1,4 +1,4 @@
-<x-frontend-layout :meta_keywords="$category->meta_keywords" :meta_description="$category->meta_description" :title="$category->nep_title.'|Jawaaf'">>
+<x-frontend-layout>
     <section>
         <div class="container py-10">
             <div class="grid md:grid-cols-12 gap-6">

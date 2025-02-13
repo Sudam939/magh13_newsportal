@@ -1,4 +1,4 @@
-<x-frontend-layout>
+<x-frontend-layout :title="'Jawaaf News'">
 
     <section>
         <div class="container py-10">
@@ -43,7 +43,7 @@
                     <div>
                         <div>
                             <h1 class="text-2xl">{{ $category->nep_title }}</h1>
-                            <img class="h-[12px]" src="https://jawaaf.com/frontend/images/redline.png" alt="">
+                            <img class="h-[12px]" src="https://jawaaf.com/frontend/images/redline.png" alt="Red Line">
                         </div>
 
 
