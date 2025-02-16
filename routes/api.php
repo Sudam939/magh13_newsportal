@@ -10,3 +10,8 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get("/company", [ApiController::class, "company"]);
+Route::get("/categories", [ApiController::class, "categories"]);
+Route::get("/category/{slug}", [ApiController::class, "category"]);
+Route::get("/latest-news", [ApiController::class, "latest_news"]);
+
+Route::post("/category/post", [ApiController::class, "category_post"]);
