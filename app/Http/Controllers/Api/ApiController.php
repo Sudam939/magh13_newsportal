@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\CompanyResource;
 use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
