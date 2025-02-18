@@ -17,8 +17,10 @@ Route::get("/latest-news", [ApiController::class, "latest_news"]);
 
 Route::middleware("auth:sanctum")->group(function(){
     Route::get("/company", [ApiController::class, "company"]);
-    Route::post("/category/post", [ApiController::class, "category_post"]);
+    Route::post("/category/post", [ApiController::class, "category_post"])->middleware("admin");
+    Route::delete("/auth/logout", [AuthController::class, "logout"]);
 });
+
 
 Route::post("/auth/register", [AuthController::class, "register"]);
 

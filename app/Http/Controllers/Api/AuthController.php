@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -72,15 +74,24 @@ class AuthController extends Controller
 
         $token = $admin->createToken('admin_token')->plainTextToken;
 
-        session()->put('token', $token);
-
-        $cookie_data = session('token');
         return response()->json([
             "success" => true,
-            "cookie_data" => $cookie_data,
             "admin" => $admin,
             "token" => $token,
             "message" => "Admin LoggedIn successfully"
+        ]);
+    }
+
+//10 days 3 filament(admin part of newsportal, roles & permission, multi auth )
+
+    public function logout()
+    {
+        $admin = Admin::find(Auth::user()->id);
+        $admin->tokens()->delete();
+            
+        return response()->json([
+            "success" => true,
+            "message" => "Admin LoggedOut successfully"
         ]);
     }
 }
